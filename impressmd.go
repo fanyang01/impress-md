@@ -40,7 +40,7 @@ if ("ontouchstart" in document.documentElement) {
 	document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
 }
 </script>
-<script src="js/impress.js"></script>
+<script src="{{with .JS}}{{.}}{{else}}impress.js{{end}}"></script>
 <script>impress().init();</script>
 </body>
 </html>
@@ -55,6 +55,7 @@ type pages struct {
 var (
 	filename = flag.String("f", "", "markdown file to process")
 	css      = flag.String("css", "", "CSS filename")
+	js       = flag.String("js", "", "impress.js filename")
 )
 
 func main() {
@@ -124,9 +125,10 @@ func output(ch chan string, done chan int) {
 	}
 	tmpl = template.Must(template.New("").Parse(finalTmpl))
 	err := tmpl.Execute(os.Stdout, struct {
-		CSS, Content string
+		CSS, JS, Content string
 	}{
 		CSS:     *css,
+		JS:      *js,
 		Content: buf.String(),
 	})
 	if err != nil {
