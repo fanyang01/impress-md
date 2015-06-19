@@ -22,7 +22,7 @@ const (
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<title>Show</title>
 
-	<link href="{{with .CSS}}{{.}}{{else}}impress.css{{end}}" rel="stylesheet" />
+	<link href="{{ .CSS }}" rel="stylesheet" />
 </head>
 <body class="impress-not-supported">
 <div class="fallback-message">
@@ -40,7 +40,7 @@ if ("ontouchstart" in document.documentElement) {
 	document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
 }
 </script>
-<script src="{{with .JS}}{{.}}{{else}}impress.js{{end}}"></script>
+<script src="{{ .JS }}"></script>
 <script>impress().init();</script>
 </body>
 </html>
@@ -54,8 +54,8 @@ type pages struct {
 
 var (
 	filename = flag.String("f", "", "markdown file to process")
-	css      = flag.String("css", "", "CSS filename")
-	js       = flag.String("js", "", "impress.js filename")
+	css      = flag.String("css", "impress.css", "CSS filename")
+	js       = flag.String("js", "impress.js", "impress.js filename")
 )
 
 func main() {
