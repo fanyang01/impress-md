@@ -29,7 +29,7 @@ const (
 	<p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
 	<p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
-<div id="impress">
+<div id="impress" data-transition-duration="250">
 {{ .Content }}
 </div>
 <div class="hint">
